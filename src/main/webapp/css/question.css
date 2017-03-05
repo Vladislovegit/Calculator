@@ -1,0 +1,28 @@
+.question {
+    margin: 15px auto 0;
+    border: solid 2px black;
+    width: 60%;
+    font-size: 16px;
+    padding-left: 15px;
+}
+
+.question h4 {
+    padding: 0 0 10px 30px;
+    margin: 0;
+    font-weight: normal;
+}
+
+.number {
+    font-weight: bold;
+}
+
+input {
+    text-align: right;
+    width: 200px;
+}
+
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}

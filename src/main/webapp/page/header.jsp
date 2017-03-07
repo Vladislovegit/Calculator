@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="webjars/jquery/3.1.1/jquery.min.js"></script>
-<script src="js/transition.js"></script>
 <link href="css/navbar.css" rel="stylesheet">
 <header>
     <nav>

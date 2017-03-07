@@ -3,6 +3,7 @@ package controller;
 import command.Command;
 import command.CommandName;
 import command.CommandRecognizer;
+import command.Parameter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,7 +14,7 @@ import java.io.IOException;
 public class Controller extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        CommandName commandName = CommandName.valueOf(request.getParameter("command"));
+        CommandName commandName = CommandName.valueOf(request.getParameter(Parameter.COMMAND));
         Command command = CommandRecognizer.getCommand(commandName);
         command.execute(request, response);
     }

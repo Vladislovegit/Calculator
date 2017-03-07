@@ -1,9 +1,10 @@
-.question {
+.question, .result {
     margin: 15px auto 0;
     border: solid 2px black;
     width: 60%;
     font-size: 16px;
     padding-left: 15px;
+    padding-right: 15px;
 }
 
 .question h4 {
@@ -16,13 +17,34 @@
     font-weight: bold;
 }
 
-input {
+input[type=number], select {
     text-align: right;
     width: 200px;
 }
 
-input::-webkit-inner-spin-button {
+.money::-webkit-inner-spin-button {
     /* display: none; <- Crashes Chrome on hover */
     -webkit-appearance: none;
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+#submit {
+    margin: 30px auto;
+    font-size: 50px;
+}
+
+.result {
+    margin-top: 0;
+    margin-bottom: 40px;
+}
+
+#result {
+    margin-bottom: 20px;
+    text-align: right;
+    font-size: 30px;
+}
+
+.message {
+    color:red;
+    font-size: 11px;
 }

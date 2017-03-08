@@ -58,58 +58,60 @@
                 <h4><input type="radio" name="hasBenefits" value="true" required title="Наличие права на льготы">&emsp;да
                 </h4>
                 <h4><input type="radio" name="hasBenefits" value="false" title="Наличие права на льготы">&emsp;нет</h4>
-                <input type="radio" name="hasBenefits" value="null" hidden>
+                <input type="radio" name="hasBenefits" value="null" hidden title="">
             </div>
             <div class="question">
                 <p><span class="number">6.</span>&emsp;Являетесь ли Вы вдовой (вдовцом), одиноким родителем, приемным
                     родителем, опекуном или
                     попечителем:</p>
-                <h4><input type="radio" name="isRaisingAlone" value="true" required>&emsp;да</h4>
-                <h4><input type="radio" name="isRaisingAlone" value="false">&emsp;нет</h4>
-                <input type="radio" name="isRaisingAlone" value="null" hidden>
+                <h4><input type="radio" name="isRaisingAlone" value="true" required
+                           title="Являетесь ли Вы вдовой (вдовцом), одиноким родителем, приемным родителем, опекуном или попечителем">&emsp;да
+                </h4>
+                <h4><input type="radio" name="isRaisingAlone" value="false"
+                           title="Являетесь ли Вы вдовой (вдовцом), одиноким родителем, приемным родителем, опекуном или попечителем">&emsp;нет
+                </h4>
+                <input type="radio" name="isRaisingAlone" value="null" hidden title="">
             </div>
             <div class="question">
                 <p><span class="number">7.</span>&emsp;Количество детей до 18 лет,</p>
-                <p><input type="number" name="childrenAmount" value="0" min="0" step="1" required>
-                    <span class="message"></span>
+                <p><input type="number" name="childrenAmount" value="0" min="0" step="1" required
+                          title="Количество детей до 18 лет">
                 </p>
                 <p>из них количество детей-инвалидов:</p>
-                <p><input type="number" name="invalidChildrenAmount" value="0" min="0" step="1" required>
+                <p><input type="number" name="invalidChildrenAmount" value="0" min="0" step="1" required
+                          title="Количество детей-инвалидов">
                     <span class="message"></span>
                 </p>
             </div>
             <div class="question">
                 <p><span class="number">8.</span>&emsp;Количество иждивенцев: </p>
-                <p><input type="number" name="dependentsAmount" value="0" min="0" step="1" required>
+                <p><input type="number" name="dependentsAmount" value="0" min="0" step="1" required
+                          title="Количество иждивенцев">
                     <span class="message"></span>
                 </p>
             </div>
             <div class="question">
                 <p><span class="number">9.</span>&emsp;Сумма расходов за выбранный период по страховым взносам по
-                    договорам добровольного страхования
-                    жизни и
-                    дополнительной пенсии, заключенным на срок не менее трех лет, а также по договорам добровольного
-                    страхования
-                    медицинских расходов, руб.</p>
-                <p><input class="money" name="insuranceCosts" type="number" value="0" min="0" required>
+                    договорам добровольного страхования жизни и дополнительной пенсии, заключенным на срок
+                    не менее трех лет, а также по договорам добровольного страхования медицинских расходов, руб.</p>
+                <p><input class="money" name="insuranceCosts" type="number" value="0" min="0" required
+                          title="Сумма расходов за выбранный период по страховым взносам">
                     <span class="message"></span>
                 </p>
             </div>
             <div class="question">
                 <p><span class="number">10.</span>&emsp;Сумма расходов за выбранный период на получение первого платного
-                    образования своего либо
-                    близких
-                    родственников, руб.</p>
-                <p><input class="money" name="educationCosts" type="number" value="0" min="0" required>
+                    образования своего либо близких родственников, руб.</p>
+                <p><input class="money" name="educationCosts" type="number" value="0" min="0" required
+                          title="Сумма расходов на получение образования">
                     <span class="message"></span>
                 </p>
             </div>
             <div class="question">
                 <p><span class="number">11.</span>&emsp;Сумма расходов за выбранный период на строительство либо
-                    приобретение жилья для нуждающихся в
-                    улучшении
-                    жилищных условий, руб.</p>
-                <p><input class="money" name="housingCosts" type="number" value="0" min="0" required>
+                    приобретение жилья для нуждающихся в улучшении жилищных условий, руб.</p>
+                <p><input class="money" name="housingCosts" type="number" value="0" min="0" required
+                          title="Сумма расходов на строительство либо приобретение жилья">
                     <span class="message"></span>
                 </p>
             </div>
@@ -117,13 +119,11 @@
         <div id="block3">
             <div class="question">
                 <p><span class="number">12.</span>&emsp;Сумма расходов за выбранный период, связанных с осуществлением
-                    предпринимательской
-                    деятельности,
-                    руб. </p>
-                <p><input class="money" name="businessCosts" type="number" value="0" min="0" required>
+                    предпринимательской деятельности,руб. </p>
+                <p><input class="money" name="businessCosts" type="number" value="0" min="0" required
+                          title="Сумма расходов предпринимательской деятельности">
                     <span class="message"></span>
                 </p>
-
             </div>
         </div>
         <div style="width: 60%; margin: auto; text-align: center">
@@ -133,7 +133,7 @@
     <div class="result">
         <p>&emsp;Сумма подоходного налога к уплате, руб.
         </p>
-        <p id="result">0.0</p>
+        <p id="result">0</p>
     </div>
 </div>
 

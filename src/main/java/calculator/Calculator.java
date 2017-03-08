@@ -1,5 +1,6 @@
 package calculator;
 
+import calculator.processor.Processor;
 import model.DataSet;
 
 import java.util.ArrayList;

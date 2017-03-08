@@ -1,5 +1,6 @@
-package calculator.processor;
+package calculator.processor.impl;
 
+import calculator.processor.DeductionProcessor;
 import model.DataSet;
 
 public class HousingDeductionProcessor extends DeductionProcessor {
@@ -8,7 +9,7 @@ public class HousingDeductionProcessor extends DeductionProcessor {
     }
 
     @Override
-    protected Integer operation(DataSet data) {
+    protected Integer deduction(DataSet data) {
         return data.getHousingCosts();
     }
 }

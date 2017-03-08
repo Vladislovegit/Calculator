@@ -1,6 +1,7 @@
-package calculator.processor;
+package calculator.processor.impl;
 
 import calculator.Constant;
+import calculator.processor.DeductionProcessor;
 import model.DataSet;
 
 public class InsuranceDeductionProcessor extends DeductionProcessor {
@@ -9,8 +10,8 @@ public class InsuranceDeductionProcessor extends DeductionProcessor {
     }
 
     @Override
-    protected Integer operation(DataSet data) {
-        return (data.getInsuranceCosts() <= Constant.INSURANCE_COSTS_LIMIT) ?
+    protected Integer deduction(DataSet data) {
+        return data.getInsuranceCosts() <= Constant.INSURANCE_COSTS_LIMIT ?
                 data.getInsuranceCosts() :
                 Constant.INSURANCE_COSTS_LIMIT;
     }

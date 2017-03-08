@@ -1,6 +1,6 @@
-package calculator.processor;
+package calculator.processor.impl;
 
-import calculator.Processor;
+import calculator.processor.Processor;
 import model.DataSet;
 
 public class IncomeProcessor implements Processor {

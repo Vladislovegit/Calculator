@@ -1,8 +1,7 @@
 package command.impl;
 
 import calculator.Calculator;
-import calculator.processor.BusinessDeductionProcessor;
-import calculator.processor.IncomeProcessor;
+import calculator.processor.impl.*;
 import command.Command;
 import command.Parameter;
 import model.DataSet;
@@ -26,9 +25,27 @@ public class CalculateCommand implements Command {
 
         Calculator calculator = new Calculator(dataSet);
         calculator.add(new IncomeProcessor());
+
+        if (!dataSet.isEmployed()) {
+            calculator.add(new UnemployedDeductionProcessor());
+            calculator.add(new InsuranceDeductionProcessor());
+            calculator.add(new EducationDeductionProcessor());
+            calculator.add(new HousingDeductionProcessor());
+        }
+
+        if (dataSet.hasBenefits()) {
+            calculator.add(new BenefitDeductionProcessor());
+        }
+
+        if (dataSet.getChildrenAmount() > 0) {
+            calculator.add(new ChildrenDeductionProcessor(dataSet));
+        }
+
+        if (dataSet.getDependentsAmount() > 0) {
+            calculator.add(new DependentsDeductionProcessor(dataSet));
+        }
+
         calculator.add(new BusinessDeductionProcessor());
-
-
 
         Double result = calculator.calculate();
 

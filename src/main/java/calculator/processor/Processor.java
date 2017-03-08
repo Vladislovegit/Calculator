@@ -1,4 +1,4 @@
-package calculator;
+package calculator.processor;
 
 import model.DataSet;
 

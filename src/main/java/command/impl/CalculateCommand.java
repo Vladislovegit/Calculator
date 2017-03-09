@@ -4,6 +4,9 @@ import calculator.Calculator;
 import calculator.processor.impl.*;
 import command.Command;
 import command.Parameter;
+import dao.DaoFactory;
+import dao.DataSetDao;
+import dao.exception.DAOException;
 import model.DataSet;
 import org.json.JSONObject;
 
@@ -26,50 +29,73 @@ public class CalculateCommand implements Command {
         Calculator calculator = new Calculator(dataSet);
         calculator.add(new IncomeProcessor());
 
-        if (!dataSet.isEmployed()) {
+        if (dataSet.getIsEmployed() != null && !dataSet.getIsEmployed()) {
             calculator.add(new UnemployedDeductionProcessor());
             calculator.add(new InsuranceDeductionProcessor());
             calculator.add(new EducationDeductionProcessor());
             calculator.add(new HousingDeductionProcessor());
         }
 
-        if (dataSet.hasBenefits()) {
+        if (dataSet.getHasBenefits() != null && dataSet.getHasBenefits()) {
             calculator.add(new BenefitDeductionProcessor());
         }
 
-        if (dataSet.getChildrenAmount() > 0) {
+        if (dataSet.getChildrenAmount() != null && dataSet.getChildrenAmount() > 0) {
             calculator.add(new ChildrenDeductionProcessor(dataSet));
         }
 
-        if (dataSet.getDependentsAmount() > 0) {
+        if (dataSet.getDependentsAmount() != null && dataSet.getDependentsAmount() > 0) {
             calculator.add(new DependentsDeductionProcessor(dataSet));
         }
 
         calculator.add(new BusinessDeductionProcessor());
 
         Double result = calculator.calculate();
+        dataSet.setResultTax(result);
 
-        String res = NumberFormat.getNumberInstance().format(result);
-        jsonObject.put(Parameter.SUCCESS, true);
-        jsonObject.put(Parameter.RESULT, res);
+        DataSetDao dataSetDao = DaoFactory.getDataSetDAO();
+        try {
+            dataSetDao.insert(dataSet);
+
+            String res = NumberFormat.getNumberInstance().format(result);
+            jsonObject.put(Parameter.SUCCESS, true);
+            jsonObject.put(Parameter.RESULT, res);
+
+        } catch (DAOException e) {
+            jsonObject.put(Parameter.SUCCESS, false);
+            jsonObject.put(Parameter.MESSAGE, "Something went wrong.");
+        }
         servletOutputStream.write(jsonObject.toString().getBytes());
     }
 
     private static DataSet getDataSet(HttpServletRequest request) {
         DataSet dataSet = new DataSet();
-        dataSet.setPeriod(Integer.parseInt(request.getParameter(Parameter.PERIOD)));
-        dataSet.setRevenueFromSale(Integer.parseInt(request.getParameter(Parameter.REVENUE_FROM_SALE)));
-        dataSet.setNonOperatingRevenue(Integer.parseInt(request.getParameter(Parameter.NON_OPERATING_REVENUE)));
-        dataSet.setEmployed(Boolean.parseBoolean(request.getParameter(Parameter.IS_EMPLOYED)));
-        dataSet.setHasBenefits(Boolean.parseBoolean(request.getParameter(Parameter.HAS_BENEFITS)));
-        dataSet.setRaisingAlone(Boolean.parseBoolean(request.getParameter(Parameter.IS_RAISING_ALONE)));
-        dataSet.setChildrenAmount(Integer.parseInt(request.getParameter(Parameter.CHILDREN_AMOUNT)));
-        dataSet.setInvalidChildrenAmount(Integer.parseInt(request.getParameter(Parameter.INVALID_CHILDREN_AMOUNT)));
-        dataSet.setDependentsAmount(Integer.parseInt(request.getParameter(Parameter.DEPENDENTS_AMOUNT)));
-        dataSet.setInsuranceCosts(Integer.parseInt(request.getParameter(Parameter.INSURANCE_COSTS)));
-        dataSet.setEducationCosts(Integer.parseInt(request.getParameter(Parameter.EDUCATION_COSTS)));
-        dataSet.setHousingCosts(Integer.parseInt(request.getParameter(Parameter.HOUSING_COSTS)));
-        dataSet.setBusinessCosts(Integer.parseInt(request.getParameter(Parameter.BUSINESS_COSTS)));
+        if (request.getParameter(Parameter.PERIOD) != null)
+            dataSet.setPeriod(Integer.parseInt(request.getParameter(Parameter.PERIOD)));
+        if (request.getParameter(Parameter.REVENUE_FROM_SALE) != null)
+            dataSet.setRevenueFromSale(Integer.parseInt(request.getParameter(Parameter.REVENUE_FROM_SALE)));
+        if (request.getParameter(Parameter.NON_OPERATING_REVENUE) != null)
+            dataSet.setNonOperatingRevenue(Integer.parseInt(request.getParameter(Parameter.NON_OPERATING_REVENUE)));
+        if (request.getParameter(Parameter.IS_EMPLOYED) != null)
+            dataSet.setIsEmployed(Boolean.parseBoolean(request.getParameter(Parameter.IS_EMPLOYED)));
+        if (request.getParameter(Parameter.HAS_BENEFITS) != null)
+            dataSet.setHasBenefits(Boolean.parseBoolean(request.getParameter(Parameter.HAS_BENEFITS)));
+        if (request.getParameter(Parameter.IS_RAISING_ALONE) != null)
+            dataSet.setIsRaisingAlone(Boolean.parseBoolean(request.getParameter(Parameter.IS_RAISING_ALONE)));
+        if (request.getParameter(Parameter.CHILDREN_AMOUNT) != null)
+            dataSet.setChildrenAmount(Integer.parseInt(request.getParameter(Parameter.CHILDREN_AMOUNT)));
+        if (request.getParameter(Parameter.INVALID_CHILDREN_AMOUNT) != null)
+            dataSet.setInvalidChildrenAmount(Integer.parseInt(request.getParameter(Parameter.INVALID_CHILDREN_AMOUNT)));
+        if (request.getParameter(Parameter.DEPENDENTS_AMOUNT) != null)
+            dataSet.setDependentsAmount(Integer.parseInt(request.getParameter(Parameter.DEPENDENTS_AMOUNT)));
+        if (request.getParameter(Parameter.INSURANCE_COSTS) != null)
+            dataSet.setInsuranceCosts(Integer.parseInt(request.getParameter(Parameter.INSURANCE_COSTS)));
+        if (request.getParameter(Parameter.EDUCATION_COSTS) != null)
+            dataSet.setEducationCosts(Integer.parseInt(request.getParameter(Parameter.EDUCATION_COSTS)));
+        if (request.getParameter(Parameter.HOUSING_COSTS) != null)
+            dataSet.setHousingCosts(Integer.parseInt(request.getParameter(Parameter.HOUSING_COSTS)));
+        if (request.getParameter(Parameter.BUSINESS_COSTS) != null)
+            dataSet.setBusinessCosts(Integer.parseInt(request.getParameter(Parameter.BUSINESS_COSTS)));
 
         return dataSet;
     }

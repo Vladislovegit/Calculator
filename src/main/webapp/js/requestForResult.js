@@ -9,6 +9,8 @@ $(function() {
                 success: function (data) {
                     if (data.success == true) {
                         $('#result').html(data.result);
+                    } else if (data.success == false) {
+                        alert(data.message);
                     }
                 }
             })

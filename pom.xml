@@ -16,9 +16,29 @@
         <jstl.version>1.2</jstl.version>
         <jquery.version>3.1.1</jquery.version>
         <json.version>20160810</json.version>
+        <hibernate.version>5.2.8.Final</hibernate.version>
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-c3p0</artifactId>
+            <version>${hibernate.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.hibernate</groupId>
+                    <artifactId>hibernate-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>jquery</artifactId>
@@ -49,12 +69,14 @@
             <groupId>javaee</groupId>
             <artifactId>javaee-api</artifactId>
             <version>RELEASE</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>RELEASE</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>

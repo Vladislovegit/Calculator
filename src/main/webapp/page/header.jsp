@@ -11,7 +11,7 @@
                 <ul>
                     <li><a id="home" href="<c:url value="/index.jsp"/>">Home</a></li>
                     <li><a id="calculator" href="<c:url value="/calculator.jsp"/>">Calculator</a></li>
-                    <li><a id="statistics" href="<c:url value="/statistics.jsp"/>">Statistics</a></li>
+                    <li><a id="statistics" href="<c:url value="/controller?command=GET_STATISTICS"/>">Statistics</a></li>
                 </ul>
             </div>
         </div>

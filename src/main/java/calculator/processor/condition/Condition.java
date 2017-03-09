@@ -9,7 +9,7 @@ import model.DataSet;
 public abstract class Condition {
 
     public static Condition getCondition(DataSet data) {
-        if (data.isRaisingAlone()) {
+        if (data.getIsRaisingAlone()) {
             return new RaisingAloneCondition();
         } else if (data.getChildrenAmount() > 1) {
             return new MoreThanOneChildCondition();

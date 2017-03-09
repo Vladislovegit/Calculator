@@ -1,5 +1,5 @@
 package command;
 
 public enum CommandName {
-    CALCULATE
+    CALCULATE, GET_STATISTICS
 }

@@ -3,13 +3,13 @@ $(function() {
         function () {
             var duration = 500;
             var block2 = $('#block2');
-            var radios = $('input[name=hasBenefits],input[name=isRaisingAlone]');
+            var inputs = block2.find('input');
             if ($(this).val() == 'true' && block2.is(':visible')) {
                 block2.hide(duration);
-                radios.filter('[value=null]').prop('checked', true);
+                inputs.prop('disabled', true);
             } else if ($(this).val() == 'false' && block2.is(':hidden')) {
                 block2.show(duration);
-                radios.filter('[value=null]').prop('checked', false);
+                inputs.prop('disabled', false);
             }
         }
     );

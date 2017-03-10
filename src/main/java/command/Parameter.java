@@ -18,4 +18,5 @@ public class Parameter {
     public static final String SUCCESS = "success";
     public static final String RESULT = "result";
     public static final String MESSAGE = "message";
+    public static final String DATA_LIST = "data_list";
 }

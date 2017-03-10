@@ -6,6 +6,9 @@ import calculator.processor.condition.impl.OneChildCondition;
 import calculator.processor.condition.impl.RaisingAloneCondition;
 import model.DataSet;
 
+// This class is used in complex processors,
+// which deductions depend on several conditions
+
 public abstract class Condition {
 
     public static Condition getCondition(DataSet data) {

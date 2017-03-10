@@ -48,7 +48,9 @@ public class CalculateCommand implements Command {
             calculator.add(new DependentsDeductionProcessor(dataSet));
         }
 
-        calculator.add(new BusinessDeductionProcessor());
+        calculator.add(new BusinessDeductionProcessor());               // This processor added last because previous
+                                                                        // processors can depend on the result
+                                                                        // of IncomeProcessor
 
         Double result = calculator.calculate();
         dataSet.setResultTax(result);
@@ -70,6 +72,9 @@ public class CalculateCommand implements Command {
 
     private static DataSet getDataSet(HttpServletRequest request) {
         DataSet dataSet = new DataSet();
+
+        // Each parameter is checked for != null because they may not transferred from the client
+
         if (request.getParameter(Parameter.PERIOD) != null)
             dataSet.setPeriod(Integer.parseInt(request.getParameter(Parameter.PERIOD)));
         if (request.getParameter(Parameter.REVENUE_FROM_SALE) != null)

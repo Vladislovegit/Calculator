@@ -4,8 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Home</title>
-    <link href="css/index.css" rel="stylesheet">
-    <link href="css/home.css" rel="stylesheet"/>
+    <link href="css/index.css" rel="stylesheet"/>
 </head>
 <body>
 <div id="content">
